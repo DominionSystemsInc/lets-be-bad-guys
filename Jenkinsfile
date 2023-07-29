@@ -12,7 +12,6 @@ pipeline {
   environment {
     // secrets for Semgrep org ID and auth token
     SEMGREP_APP_TOKEN     = credentials('SEMGREP_APP_TOKEN')
-    SEMGREP_DEPLOYMENT_ID = credentials('SEMGREP_DEPLOYMENT_ID')
 
     // environment variables for semgrep_agent (for findings / analytics page)
     // remove .git at the end
@@ -26,7 +25,7 @@ pipeline {
   stages {
     stage('Semgrep_agent') {
       steps{
-        sh 'python -m semgrep_agent --publish-token $SEMGREP_APP_TOKEN --publish-deployment $SEMGREP_DEPLOYMENT_ID'
+        sh 'python -m semgrep_agent --publish-token $SEMGREP_APP_TOKEN 
       }
    }
   }
